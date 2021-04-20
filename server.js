@@ -8,7 +8,7 @@ app.set("view engine", "ejs");
 
 app.use("/articles", articleRouter);
 
-// HOME ROUTE - default
+// GET HOME ROUTE - default
 app.get("/", (req, res, err) => {
   // Articles placeholder
   const articles = [
@@ -19,20 +19,20 @@ app.get("/", (req, res, err) => {
     },
   ];
 
-  res.render("index", { articles: articles });
+  res.render("articles/index", { articles: articles });
 });
 
-// ABOUT ROUTE
+// GET ABOUT ROUTE
 app.get("/about", (req, res, err) => {
   res.render("about");
 });
 
-// PROJECTS ROUTE
+// GET PROJECTS ROUTE
 app.get("/projects", (req, res, err) => {
   res.render("projects");
 });
 
-// CONTACT ROUTE
+// GET CONTACT ROUTE
 app.get("/contact", (req, res, err) => {
   res.render("contact");
 });

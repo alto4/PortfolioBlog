@@ -11,7 +11,13 @@ app.use("/articles", articleRouter);
 // HOME ROUTE - default
 app.get("/", (req, res, err) => {
   // Articles placeholder
-  const articles = [{}];
+  const articles = [
+    {
+      title: "Day 0: Getting Prepared",
+      createdAt: new Date(),
+      description: "Getting ready for the 100 Days of Code Challenge.",
+    },
+  ];
 
   res.render("index", { articles: articles });
 });

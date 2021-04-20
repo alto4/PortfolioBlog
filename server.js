@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+// Import Article model
+const Article = require("./models/article");
 // Import article router
 const articleRouter = require("./routes/articles");
 
@@ -15,16 +17,9 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 // GET HOME ROUTE - default
-app.get("/", (req, res, err) => {
-  // Articles placeholder
-  const articles = [
-    {
-      title: "Day 0: Getting Prepared",
-      createdAt: new Date(),
-      description: "Getting ready for the 100 Days of Code Challenge.",
-    },
-  ];
-
+app.get("/", async (req, res, err) => {
+  // Get all posts and sort by most recenting
+  const articles = await Article.find().sort({ createdAt: "descending" });
   res.render("articles/index", { articles: articles });
 });
 

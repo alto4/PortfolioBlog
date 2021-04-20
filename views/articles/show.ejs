@@ -11,7 +11,17 @@
 <body>
  <div class="container">
     <h1 class="my-3"><%= article.title %></h1>
-    <h1>Hi</h1>
+    <div class="text-muted mb-3">
+      <%= article.createdAt.toLocaleDateString() %>
+    </div>
+
+    <a href="/" class="btn btn-secondary">All Posts</a>
+    <a href="/articles/edit/<%= article.id %>" class="btn btn-success">Edit</a>
+    
+    <div class="my-3">      
+    <%= article.markdown %>
+    </div>
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

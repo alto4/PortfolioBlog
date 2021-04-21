@@ -5,16 +5,20 @@ const app = express();
 const Article = require("./models/article");
 // Import article router
 const articleRouter = require("./routes/articles");
+// Import method-override to allow for processing DELETEs directly from form request
+const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost/blog", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 // Use ejs view engine to convert/render views to HTML
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 // GET HOME ROUTE - default
 app.get("/", async (req, res, err) => {
@@ -23,17 +27,17 @@ app.get("/", async (req, res, err) => {
   res.render("articles/index", { articles: articles });
 });
 
-// GET ABOUT ROUTE
+// GET --> ABOUT ROUTE
 app.get("/about", (req, res, err) => {
   res.render("about");
 });
 
-// GET PROJECTS ROUTE
+// GET --> PROJECTS ROUTE
 app.get("/projects", (req, res, err) => {
   res.render("projects");
 });
 
-// GET CONTACT ROUTE
+// GET --> CONTACT ROUTE
 app.get("/contact", (req, res, err) => {
   res.render("contact");
 });

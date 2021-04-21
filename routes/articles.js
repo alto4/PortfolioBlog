@@ -11,7 +11,7 @@ router.get("/new", (req, res) => {
 
 // GET SINGLE BLOG POST ROUTE
 router.get("/:id", async (req, res) => {
-  const article = await Article.findById(req.params.id);
+  const article = await Article.findOne(req.params.slug);
 
   // If theres an error finding by id, redirect user to the homepage
   if (article == null) {
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
   try {
     // Redirect to newly posted post if succesful
     article = await article.save();
-    res.redirect(`/articles/${article.id}`);
+    res.redirect(`/articles/${article.slug}`);
   } catch (err) {
     // Refill form in case of invalid entry
     res.render("articles/new", { article: article });

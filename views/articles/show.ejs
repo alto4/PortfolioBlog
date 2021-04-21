@@ -16,10 +16,10 @@
     </div>
 
     <a href="/" class="btn btn-secondary">All Posts</a>
-    <a href="/articles/edit/<%= article.id %>" class="btn btn-success">Edit</a>
+    <a href="/articles/edit/<%= article.slug %>" class="btn btn-success">Edit</a>
     
     <div class="my-3">      
-    <%= article.markdown %>
+    <%- article.markdown %>
     </div>
 
   </div>

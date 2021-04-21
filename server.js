@@ -8,6 +8,8 @@ const articleRouter = require("./routes/articles");
 // Import method-override to allow for processing DELETEs directly from form request
 const methodOverride = require("method-override");
 
+let loggedIn = true;
+
 mongoose.connect("mongodb://localhost/blog", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,7 +26,7 @@ app.use(methodOverride("_method"));
 app.get("/", async (req, res, err) => {
   // Get all posts and sort by most recenting
   const articles = await Article.find().sort({ createdAt: "descending" });
-  res.render("articles/index", { articles: articles });
+  res.render("articles/index", { articles: articles, loggedIn: loggedIn });
 });
 
 // GET --> ABOUT ROUTE

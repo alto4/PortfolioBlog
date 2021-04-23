@@ -24,7 +24,8 @@ app.use(methodOverride("_method"));
 
 // GET HOME ROUTE - default
 app.get("/", (req, res, err) => {
-  res.render("index");
+  // res.render("index");
+  res.redirect("/blog");
 });
 
 app.get("/blog", async (req, res, err) => {
@@ -49,5 +50,7 @@ app.get("/contact", (req, res, err) => {
 });
 
 app.use("/posts", blogPostsRouter);
+
+app.use("/public", express.static("public"));
 
 app.listen(5000);

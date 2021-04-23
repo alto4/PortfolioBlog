@@ -6,25 +6,25 @@ const Article = require("../models/article");
 
 // GET --> NEW BLOG POST ROUTE
 router.get("/new", (req, res) => {
-  res.render("articles/new", { article: new Article() });
+  res.render("posts/new", { article: new Article() });
 });
 
 // GET --> EDIT BLOG POST ROUTE
-router.get("/edit/:slug", async (req, res) => {
-  const article = await Article.findOne(req.params.id);
-  res.render("articles/edit", { article: article });
+router.get("/edit/:id", async (req, res) => {
+  const article = await Article.findById(req.params.id);
+  res.render("posts/edit", { article: article });
 });
 
 // GET --> SINGLE BLOG POST ROUTE
 router.get("/:id", async (req, res) => {
-  const article = await Article.findOne(req.params.slug);
+  const article = await Article.findById(req.params.id);
 
   // If theres an error finding by id, redirect user to the homepage
   if (article == null) {
     res.redirect("/");
   }
 
-  res.render("articles/show", { article: article });
+  res.render("posts/show", { article: article });
 });
 
 // POST --> NEW BLOG POST ROUTE
@@ -50,7 +50,7 @@ router.put(
 // DELETE --> BLOG POST ROUTE
 router.delete("/:id", async (req, res) => {
   await Article.findByIdAndDelete(req.params.id);
-  res.redirect("/");
+  res.redirect("/blog");
 });
 
 function saveArticleAndRedirect(path) {
@@ -66,10 +66,10 @@ function saveArticleAndRedirect(path) {
     try {
       // Redirect to newly posted post if succesful
       article = await article.save();
-      res.redirect(`/articles/${article.slug}`);
+      res.redirect(`/posts/${article.id}`);
     } catch (err) {
       // Refill form in case of invalid entry
-      res.render(`articles/${path}`, { article: article });
+      res.render(`posts/${path}`, { article: article });
     }
   };
 }

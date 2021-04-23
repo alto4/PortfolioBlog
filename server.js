@@ -4,7 +4,7 @@ const app = express();
 // Import Article model
 const Article = require("./models/article");
 // Import article router
-const articleRouter = require("./routes/articles");
+const blogPostsRouter = require("./routes/posts");
 // Import method-override to allow for processing DELETEs directly from form request
 const methodOverride = require("method-override");
 
@@ -23,10 +23,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 // GET HOME ROUTE - default
-app.get("/", async (req, res, err) => {
+app.get("/", (req, res, err) => {
+  res.render("index");
+});
+
+app.get("/blog", async (req, res, err) => {
   // Get all posts and sort by most recenting
   const articles = await Article.find().sort({ createdAt: "descending" });
-  res.render("articles/index", { articles: articles, loggedIn: loggedIn });
+  res.render("posts/index", { articles: articles, loggedIn: loggedIn });
 });
 
 // GET --> ABOUT ROUTE
@@ -44,6 +48,6 @@ app.get("/contact", (req, res, err) => {
   res.render("contact");
 });
 
-app.use("/articles", articleRouter);
+app.use("/posts", blogPostsRouter);
 
 app.listen(5000);

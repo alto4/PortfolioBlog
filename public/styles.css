@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+
+.container {
+  margin-bottom: 50px;
+  min-height: calc(86vh - 70px);
+}
+
+
 footer {
   display: flex;
   justify-content: center;
@@ -12,7 +19,7 @@ footer {
   height: 70px;
   background: #000;
   color: #fff;
-  position: absolute;
+  position: static;
   bottom: 0;
-  padding: 20px auto; 
+  padding: 35px auto; 
 }

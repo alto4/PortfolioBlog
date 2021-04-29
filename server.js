@@ -7,10 +7,12 @@ const Article = require("./models/article");
 const blogPostsRouter = require("./routes/posts");
 // Import method-override to allow for processing DELETEs directly from form request
 const methodOverride = require("method-override");
-
+// Database configuration
+let dbConfig = require("./config/db");
+console.log(dbConfig);
 let loggedIn = true;
 
-mongoose.connect("mongodb://localhost/blog", {
+mongoose.connect(dbConfig.Path, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

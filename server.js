@@ -9,7 +9,8 @@ const blogPostsRouter = require("./routes/posts");
 const methodOverride = require("method-override");
 // Database configuration
 let dbConfig = require("./config/db");
-console.log(dbConfig);
+
+// Placeholder for authentication status
 let loggedIn = true;
 
 mongoose.connect(dbConfig.Path, {

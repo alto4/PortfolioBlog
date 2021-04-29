@@ -1,14 +1,15 @@
 <%- include('../partials/header') %>
-    <h1 class="my-3">Blog Posts</h1>
+    <h1 class="text-center my-5">Blog Posts</h1>
 
     <% if(loggedIn) { %>
-    <a href="/posts/new" class="btn btn-success">New Article</a>
+    <a href="/posts/new" class="btn btn-success btn-lg">New Article</a>
     
     <% } %>
 
+    <div class="row">
     <%
       articles.forEach(article => { %>
-        <div class="card my-3">
+        <div class="card my-3 col-md-9">
           <div class="card-body">
             <h4 class="card-title"><%- article.title %></h4>  
             <div class="card-subtitle text-muted mb-2">
@@ -18,12 +19,17 @@
               <%= article.description %>
             </div>
             <a href="posts/<%= article.id %>" class="btn btn-dark">Read More</a>
-            <a href="posts/edit/<%= article.id %>" class="btn btn-light">Edit</a>
-          
-            <form action="/posts/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
-              <button type="submit" class="btn btn-danger">Delete</button>  
-            </form>
-            </div>
+            <% if(loggedIn) { %>
+              <a href="posts/edit/<%= article.id %>" class="btn btn-light">Edit</a>
+            
+              <form action="/posts/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete</button>  
+              </form>
+            <% } %>
+          </div>
         </div>
+        <div class="col-md-3">
+          </div>
     <% }); %>
+    </div>
 <%- include('../partials/footer') %>

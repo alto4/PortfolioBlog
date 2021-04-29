@@ -4,6 +4,6 @@ let remoteURI =
 let sessionSecret = "secret";
 
 module.exports = {
-  Path: localURI,
+  Path: remoteURI,
   Secret: sessionSecret,
 };

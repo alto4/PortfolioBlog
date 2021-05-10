@@ -1,0 +1,29 @@
+<h3>Finishing up the Project Management App</h3>
+
+<p>
+  I spent a few hours today finishing up the logic and core functionality of the project management app. </p>
+
+<p>
+  This included polishing up the edit feature, tidying up the 
+  code overall, ensuring that event listeners were appropriately added to and removed from elements, as well as connecting to localStorage for persistence. I also 
+  added the exit strategies for abandoning a task or project entry, and overall am happy with how it feels. Most of these efforts actually went surprsingly smooth - with a couple notable exceptions. 
+</p>
+
+<p>
+  Implementing persistence with localStorage seemed too good to be true, and sure enough it was. The issue that I faced was that event listeners were not properly working with stored projects and tasks. 
+  This was because parsing the JSON data from localStorage into objects didn't explicitly cast them into Project or Task instances. Therefore, the class methods were being called without any association. 
+</p>
+
+<p>
+  Anothing cool thing I learned was using the replaceChild method to swap out the add button with the edit buttons on both the task and project forms without having to do a bunch of work 
+  to avoid event delegation conflicts using a shared input form.
+</p>
+
+<p>
+  Tomorrow I plan to put the final touches of the project, with an emphasis on improving the UI design and ironing out any existing kinks (including issues with the mark complete/incomplete when working with 
+  data render from localStorage entries).
+</p>
+
+<p>Here is a sample of where the project is currently at: </p>
+
+<img src="/public/images/task-manager-day4.JPG" alt="Task Manager app after Day 4 efforts." class="w-75">

@@ -1,0 +1,15 @@
+<h3>Day 38: Recipe App and Resuming Efforts in the Guitar Ed Site</h3>
+
+<p>
+  Today was a change of gears as I revisited a project with a partner after a couple weeks away.
+</p>
+
+<p>
+  I had started a Node, Express, MongoDB project with a friend/former peer at Durham College a month of so back with the ambition of creating a recipe sharing/substitution app that we would gradually 
+  build and expand features for. Last time we had setup the basic server and database connection, and today was spent tying the add recipe form into the MongoDB Atlas collection, and getting 
+  data to be properly sent. Although this should have been fairly straightforward, a lot of time was spent trying to figure out why new recipes were being created at the right time, but no data 
+  from the form was being passed through. After troubleshooting a couple obvious issues (no POST method on the form element, no names on the input elements, etc.), a much bigger issue that took more 
+  debugging and research was the fact that we were missing the body-parser as a middleware dependency (app.use was not present). 
+</p>
+
+<p>Once we sorted out these issues, the app feels like it is starting to take shape and I feel more excited for upcoming efforts, where we can customize and build out more interesting features.</p>
